@@ -1,101 +1,230 @@
 <!doctype html>
 <html lang="it">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Kings League Italia — Manager 2.0</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kings League Italia Manager 5.0</title>
 <style>
-:root{--bg:#080a10;--p:#111522;--p2:#181d2b;--line:#292f40;--txt:#f7f8fb;--muted:#9aa3b8;--lime:#b8ff28;--violet:#795cff;--red:#ff4d68;--gold:#ffd54a}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% 0,#2c2052 0,#080a10 43%);color:var(--txt);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,select{font:inherit}button{border:0;border-radius:11px;padding:10px 13px;font-weight:850;background:var(--lime);color:#071000;cursor:pointer}button.sec{background:var(--p2);color:var(--txt);border:1px solid var(--line)}button.red{background:var(--red);color:#fff}button:disabled{opacity:.35;cursor:not-allowed}
-header{position:sticky;top:0;z-index:9;background:#080a10eF;backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:13px 18px;display:flex;gap:15px;justify-content:space-between;align-items:center}.brand{font-weight:950;letter-spacing:-1px}.brand i{color:var(--lime);font-style:normal}.nav{display:flex;gap:5px;overflow:auto}.nav button{background:transparent;color:var(--muted);border:1px solid transparent;white-space:nowrap}.nav button.active{background:var(--p2);border-color:var(--line);color:#fff}
-main{max-width:1240px;margin:auto;padding:20px}.screen{display:none}.screen.on{display:block}.hero{border:1px solid var(--line);background:linear-gradient(135deg,#171b2a,#0e1119);border-radius:20px;padding:22px;margin-bottom:15px}h1{margin:0 0 5px;font-size:32px;letter-spacing:-1px}h2,h3{margin-top:0}.muted{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}.card{background:var(--p);border:1px solid var(--line);border-radius:16px;padding:15px}.controls{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.controls input,.controls select{background:var(--p);color:var(--txt);border:1px solid var(--line);border-radius:10px;padding:10px;min-width:145px}.statrow{display:flex;justify-content:space-between;padding:6px 0;color:var(--muted);font-size:13px}.big{font-size:27px;font-weight:950}.lime{color:var(--lime)}.gold{color:var(--gold)}.tag{display:inline-block;background:#252b3c;border-radius:99px;padding:4px 8px;color:#cfd5e4;font-size:11px}.playerTop{display:flex;justify-content:space-between;gap:8px}.ovr{font-size:27px;font-weight:950;color:var(--lime)}.actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
-table{width:100%;border-collapse:collapse;background:var(--p);border:1px solid var(--line);border-radius:14px;overflow:hidden}th,td{text-align:left;padding:10px;border-bottom:1px solid var(--line);font-size:13px}th{color:var(--muted)}tr.me{background:#1b2415}.rank{font-weight:900}.crest{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--lime),var(--violet));display:grid;place-items:center;color:#071000;font-weight:950}
-.pitch{background:linear-gradient(90deg,#14522f,#1d7040);border:5px solid #e8f1df;border-radius:18px;min-height:430px;padding:18px;display:flex;flex-direction:column;justify-content:space-around;align-items:center}.line{display:flex;justify-content:center;gap:18px;flex-wrap:wrap}.shirt{text-align:center;width:76px}.shirt b{display:grid;place-items:center;width:48px;height:48px;margin:auto;border-radius:50%;background:#fff;color:#10131b}.shirt small{display:block;font-size:10px;margin-top:4px}
-.score{font-size:38px;font-weight:950;text-align:center}.matchbox{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;text-align:center}.log{max-height:290px;overflow:auto}.event{padding:7px 0;border-bottom:1px solid var(--line);font-size:13px}.pill{padding:7px 10px;border-radius:10px;background:#202638}.bracket{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.stage{background:var(--p);border:1px solid var(--line);border-radius:14px;padding:12px}.stage div{padding:9px;border-bottom:1px solid var(--line)}.toast{position:fixed;right:15px;bottom:15px;background:#fff;color:#111;padding:12px 15px;border-radius:12px;box-shadow:0 8px 35px #0008;display:none;z-index:20}
-@media(max-width:700px){header{flex-direction:column;align-items:flex-start}.nav{width:100%}main{padding:13px}h1{font-size:27px}.bracket{grid-template-columns:1fr}.matchbox{grid-template-columns:1fr}.score{font-size:30px}}
+:root{--bg:#07080c;--p:#11141d;--p2:#191e2a;--line:#303746;--txt:#f7f8fb;--muted:#9da6b8;--lime:#b9ff24;--violet:#795cff;--gold:#ffd34e;--red:#ff4966}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% -10%,#38256f 0,#090b11 38%),var(--bg);color:var(--txt);font-family:system-ui,-apple-system,Segoe UI,sans-serif}header{position:sticky;top:0;z-index:5;background:#080a0eee;backdrop-filter:blur(15px);border-bottom:1px solid var(--line);padding:10px}.top{max-width:1200px;margin:auto}.brand{font-weight:1000;font-size:18px}.brand i{color:var(--lime);font-style:normal}nav{display:flex;gap:5px;overflow:auto;margin-top:8px}button{border:0;border-radius:10px;padding:10px 13px;background:var(--lime);color:#0a1000;font-weight:900;cursor:pointer}nav button{background:transparent;color:var(--muted);border:1px solid transparent;white-space:nowrap}nav button.on{background:var(--p2);color:white;border-color:var(--line)}button.alt{background:var(--p2);color:white;border:1px solid var(--line)}button:disabled{opacity:.35}main{max-width:1200px;margin:auto;padding:14px}.screen{display:none}.screen.on{display:block}.hero,.card{background:var(--p);border:1px solid var(--line);border-radius:18px;padding:15px}.hero{background:linear-gradient(135deg,#171b29,#0d1017);margin-bottom:12px}h1{margin:0 0 6px;font-size:30px;letter-spacing:-1px}.muted{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:11px;margin-top:11px}.big{font-size:28px;font-weight:1000}.lime{color:var(--lime)}.gold{color:var(--gold)}.actions,.filters{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.filters input,.filters select,.hero input{background:var(--p);color:white;border:1px solid var(--line);border-radius:9px;padding:10px}.player{display:flex;justify-content:space-between;gap:10px}.ovr{font-size:30px;font-weight:1000;color:var(--lime)}.tag{font-size:11px;color:#dce1ec;background:#242a38;border-radius:99px;padding:4px 7px}.row{display:flex;justify-content:space-between;padding:5px 0;color:var(--muted);font-size:13px}.row b{color:white}.statgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:4px;margin:9px 0}.stat{background:#0c0f16;border:1px solid #252b38;border-radius:8px;padding:7px;font-size:11px}.stat b{display:block;color:white;font-size:16px}.board{background:#0d1017;border:1px solid #3a4151;border-radius:16px;overflow:hidden}.boardtop{padding:9px 12px;background:#202635;color:#dce2ed;font-size:10px;font-weight:1000;letter-spacing:1px}.score{display:grid;grid-template-columns:1fr auto 1fr;text-align:center;align-items:center;padding:18px;gap:8px}.score strong{font-size:38px}.club{font-weight:1000}.event{padding:9px;border-bottom:1px solid var(--line);font-size:13px}.pitch{min-height:510px;border:5px solid #edf4ec;border-radius:18px;background:repeating-linear-gradient(90deg,#15582f 0,#15582f 10%,#176332 10%,#176332 20%);padding:25px;display:flex;flex-direction:column;justify-content:space-around;position:relative}.pitch:before{content:"";position:absolute;inset:12%;border:2px solid #ffffff66}.prow{display:flex;justify-content:center;gap:18px;z-index:1}.shirt{text-align:center;width:72px}.shirt b{display:grid;place-items:center;width:44px;height:44px;margin:auto;background:white;color:#111;border-radius:50%}.shirt small{font-weight:900;font-size:10px;text-shadow:0 1px 3px #000}.module{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.module button{background:var(--p2);color:white;border:1px solid var(--line);text-align:left}.module button.sel{border-color:var(--lime)}table{width:100%;border-collapse:collapse;background:var(--p);border:1px solid var(--line)}th,td{padding:9px;border-bottom:1px solid var(--line);font-size:13px;text-align:left}th{color:var(--muted)}tr.me{background:#263719}.bracket{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stage{background:var(--p);border:1px solid var(--line);border-radius:14px;padding:12px}.slot{padding:10px;border-bottom:1px solid var(--line)}@media(max-width:650px){.module,.bracket{grid-template-columns:1fr}.pitch{min-height:430px}.score strong{font-size:30px}h1{font-size:26px}}
+</style>
+
+<style id="kings51">
+:root{--neon:#c7ff1a;--hot:#ff2bd6;--cyan:#22e7ff;--ink:#06070b}
+body{background:#05060a;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.12;background-image:linear-gradient(120deg,transparent 0 45%,#fff 45.2% 45.5%,transparent 45.7%),radial-gradient(circle at 20% 20%,var(--hot),transparent 22%),radial-gradient(circle at 85% 15%,var(--cyan),transparent 20%);mix-blend-mode:screen}
+header{background:linear-gradient(180deg,#05060af5,#05060ad9);border-bottom:1px solid #252b38;box-shadow:0 8px 30px #0008}
+.brand{font-size:21px;letter-spacing:-1px;text-transform:uppercase}
+.brand i{color:var(--neon);text-shadow:0 0 18px #c7ff1a55}
+nav button{font-size:11px;text-transform:uppercase;font-weight:1000;letter-spacing:.6px}
+nav button.on{color:var(--neon);border-color:#c7ff1a66;box-shadow:inset 0 -2px 0 var(--neon)}
+.hero{position:relative;overflow:hidden;border-color:#343b4d;background:linear-gradient(135deg,#141827 0,#0a0c12 58%,#171026 100%);box-shadow:0 16px 45px #0005}
+.hero:after{content:"KINGS";position:absolute;right:-18px;top:-20px;font-size:80px;font-weight:1000;font-style:italic;color:#fff;opacity:.025;transform:rotate(-8deg)}
+.card{border-color:#2b3241;box-shadow:0 10px 30px #0004}
+.card:hover{border-color:#46506a;transform:translateY(-1px);transition:.15s}
+button{background:var(--neon);box-shadow:0 5px 20px #c7ff1a22;text-transform:uppercase;letter-spacing:.4px}
+button.alt{background:#171b25}
+button:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.big{font-weight:1000}
+.ovr{color:var(--neon);text-shadow:0 0 16px #c7ff1a44}
+.tag{border:1px solid #ffffff16;text-transform:uppercase}
+.board{box-shadow:0 18px 45px #0008;border-color:#454d61;background:#080a0f}
+.boardtop{background:linear-gradient(90deg,#202635,#10131b);color:var(--neon);letter-spacing:1.5px}
+.score{background:radial-gradient(circle,#242a39 0,#0a0c11 65%);position:relative}
+.score:after{content:"KINGS MATCH";position:absolute;bottom:5px;left:0;right:0;font-size:8px;color:#697386;letter-spacing:2px}
+.pitch{box-shadow:0 25px 55px #0009;border-color:#f5f8f1;background:repeating-linear-gradient(90deg,#124f2b 0,#124f2b 10%,#176334 10%,#176334 20%)}
+.pitch:after{content:"K";position:absolute;right:25px;bottom:20px;font-size:80px;font-weight:1000;color:#fff;opacity:.08;font-style:italic}
+.shirt b{box-shadow:0 0 0 3px #ffffff22,0 4px 15px #0009;font-size:13px}
+.event{border-left:3px solid transparent}
+.event:first-letter{color:var(--neon)}
+table{overflow:hidden;border-radius:14px}
+th{text-transform:uppercase;letter-spacing:.6px;font-size:10px}
+tr.me{background:linear-gradient(90deg,#243b13,#18220f);box-shadow:inset 3px 0 var(--neon)}
+.bracket .stage{background:linear-gradient(180deg,#151925,#0c0e14)}
+.slot{border:1px solid #2b3241;border-radius:10px;margin:7px 0;background:#0a0c11}
+@media(max-width:650px){.brand{font-size:17px}.hero{padding:14px}.score{padding:14px}.pitch{padding:16px}}
+</style>
+
+<style id="v60">
+#liveFeed{display:flex;flex-direction:column;gap:6px;max-height:360px;overflow:auto}
+.liveevt{padding:9px 10px;border-radius:9px;background:#0b0e15;border-left:3px solid #303746;font-size:13px}
+.liveevt.hot{border-left-color:#c7ff1a;background:linear-gradient(90deg,#1a2410,#0b0e15)}
+.liveevt.bad{border-left-color:#ff4966}
+#momentumBar{box-shadow:0 0 18px #c7ff1a55}
+.pulse{animation:pulse .55s ease}
+@keyframes pulse{50%{transform:scale(1.035);filter:brightness(1.3)}}
 </style>
 </head>
 <body>
-<header><div class="brand">KL <i>ITALIA</i> • MANAGER 2.0</div><div class="nav">
-<button data-s="home" class="active">Home</button><button data-s="draft">Draft</button><button data-s="squad">Rosa</button><button data-s="market">Mercato</button><button data-s="league">Classifica</button><button data-s="game">Partita</button><button data-s="playoffs">Playoff</button>
-</div></header>
+<header><div class="top"><div class="brand">KINGS <i>ITALIA</i> MANAGER <span style="font-size:11px;color:#7f899d">5.1</span></div><nav>
+<button data-page="home">Home</button><button data-page="setup">Club</button><button data-page="draft">Draft</button><button data-page="squad">Formazione</button><button data-page="match">Match</button><button data-page="live">⚡ Live</button><button data-page="market">Mercato</button><button data-page="table">Classifica</button><button data-page="stats">Stats</button><button data-page="playoff">Playoff</button>
+</nav></div></header>
 <main>
-<section id="home" class="screen on"><div class="hero"><h1>Costruisci il tuo club.</h1><div class="muted">Una carriera fan-made: Draft, IA, mercato, regular season, Play-In e Playoff.</div><div class="controls"><button onclick="newCareer()">Nuova carriera</button><button class="sec" onclick="go('draft')">Inizia il Draft →</button></div></div>
-<div class="grid"><div class="card"><span class="muted">CLUB</span><div id="hTeam" class="big">—</div></div><div class="card"><span class="muted">BUDGET</span><div id="hBudget" class="big lime">100M</div></div><div class="card"><span class="muted">ROSA</span><div id="hSquad" class="big">0/8</div></div><div class="card"><span class="muted">MATCHDAY</span><div id="hRound" class="big">1/11</div></div></div>
-<div class="card" style="margin-top:12px"><h3>Obiettivi</h3><div id="objectives"></div></div></section>
+<section id="home" class="screen on"><div class="hero"><div style="font-size:10px;font-weight:1000;letter-spacing:2px;color:#c7ff1a;margin-bottom:6px">LIVE • MANAGER MODE • 2026</div><h1>Il tuo club. Il tuo 7.</h1><p class="muted">Manageriale Kings con giocatori, statistiche, moduli, telecronaca e playoff.</p><div class="actions"><button onclick="newCareer()">Nuova carriera</button><button class="alt" onclick="go('setup')">Configura →</button></div></div><div class="grid"><div class="card"><span class="muted">CLUB</span><div id="club" class="big">—</div></div><div class="card"><span class="muted">BUDGET</span><div id="budget" class="big lime">100M</div></div><div class="card"><span class="muted">MODULO</span><div id="mod" class="big">—</div></div><div class="card"><span class="muted">GIORNATA</span><div id="round" class="big">1/11</div></div></div><div class="card" style="margin-top:11px"><b>🔥 Kings News</b><p id="news" class="muted"></p></div></section>
 
-<section id="draft" class="screen"><div class="hero"><h1>Draft a turni</h1><div id="draftInfo" class="muted"></div></div><div class="controls"><input id="dq" placeholder="Cerca giocatore" oninput="renderDraft()"><select id="dr" onchange="renderDraft()"><option value="">Tutti i ruoli</option><option>Portiere</option><option>Difensore</option><option>Centrocampista</option><option>Attaccante</option></select><select id="ds" onchange="renderDraft()"><option value="ovr">Overall ↓</option><option value="value">Prezzo ↑</option></select></div><div id="draftList" class="grid"></div></section>
+<section id="setup" class="screen"><div class="hero"><h1>Crea la squadra</h1><p class="muted">Scegli il nome e il modulo prima del draft.</p><input id="teamName" placeholder="Nome squadra"><h3 style="margin-top:18px">Modulo titolare</h3><div class="module"><button data-m="1-2-3"><b>1-2-3</b><br>2 difensori · 3 attaccanti</button><button data-m="1-3-2"><b>1-3-2</b><br>3 difensori · 2 attaccanti</button><button data-m="1-2-2-1"><b>1-2-2-1</b><br>2 difensori · 2 centrocampisti · 1 attaccante</button></div><div class="actions"><button onclick="saveSetup()">Salva e vai al Draft</button></div></div></section>
 
-<section id="squad" class="screen"><div class="hero"><h1>La tua rosa</h1><div id="sInfo" class="muted"></div></div><div id="pitch" class="pitch"></div><div style="height:12px"></div><div id="sList" class="grid"></div></section>
+<section id="draft" class="screen"><div class="hero"><h1>Draft</h1><p id="dinfo" class="muted"></p><div class="filters"><button onclick="randomTeam()">🎲 Squadra casuale</button><input id="search" placeholder="Cerca" oninput="renderDraft()"><select id="role" onchange="renderDraft()"><option value="">Tutti i ruoli</option><option>Portiere</option><option>Difensore</option><option>Centrocampista</option><option>Attaccante</option></select><select id="clubFilter" onchange="renderDraft()"><option value="">Tutte le squadre</option></select></div><div id="random" class="card" style="margin-top:10px"></div></div><div id="draftList" class="grid"></div></section>
 
-<section id="market" class="screen"><div class="hero"><h1>Mercato</h1><div class="muted">Le IA possono fare offerte e acquistare giocatori tra una giornata e l'altra.</div></div><div class="controls"><input id="mq" placeholder="Cerca" oninput="renderMarket()"><select id="mr" onchange="renderMarket()"><option value="">Tutti</option><option>Portiere</option><option>Difensore</option><option>Centrocampista</option><option>Attaccante</option></select></div><div id="marketList" class="grid"></div></section>
+<section id="squad" class="screen"><div class="hero"><h1>Formazione</h1><p id="sinfo" class="muted"></p><div id="mods" class="actions"></div></div><div id="pitch" class="pitch"></div><div id="squadList" class="grid"></div></section>
 
-<section id="league" class="screen"><div class="hero"><h1>Classifica</h1><div class="muted">Regular Season: 11 giornate, 12 squadre.</div></div><table><thead><tr><th>#</th><th>Squadra</th><th>PG</th><th>V</th><th>P</th><th>S</th><th>GF</th><th>GS</th><th>DR</th><th>PT</th></tr></thead><tbody id="stand"></tbody></table></section>
+<section id="match" class="screen"><div class="hero"><h1>Matchday</h1><p id="minfo" class="muted"></p><div id="next"></div></div><div class="grid"><div class="card"><h3>🎙️ Telecronaca</h3><div id="live"></div></div><div class="card"><h3>📺 Risultati</h3><div id="results"></div></div></div></section>
 
-<section id="game" class="screen"><div class="hero"><h1>Matchday</h1><div id="gameInfo" class="muted"></div></div><div id="next" class="card"></div><div style="height:12px"></div><div class="card"><h3>Ultime partite</h3><div id="history"></div></div></section>
+<section id="market" class="screen"><div class="hero"><h1>Mercato</h1><div id="offers"></div></div><div id="marketList" class="grid"></div></section>
+<section id="table" class="screen"><div class="hero"><h1>Classifica</h1><p class="muted">Punti · differenza reti · rendimento.</p></div><table><thead><tr><th>#</th><th>Squadra</th><th>PG</th><th>V</th><th>P</th><th>S</th><th>DR</th><th>PT</th></tr></thead><tbody id="tbody"></tbody></table></section>
+<section id="stats" class="screen"><div class="hero"><h1>Statistiche</h1><p class="muted">Rendimento della tua rosa.</p></div><div id="statsList" class="grid"></div></section>
+<section id="playoff" class="screen"><div class="hero"><h1>Playoff Week</h1><p class="muted">Top 8, quarti, semifinali e finale.</p><div id="bracket"></div></div></section>
 
-<section id="playoffs" class="screen"><div class="hero"><h1>Postseason</h1><div class="muted">Play-In e Playoff si sbloccano al termine della Giornata 11.</div></div><div id="post" class="card"></div></section>
-</main><div id="toast" class="toast"></div>
-
+<section id="live" class="screen">
+  <div class="hero">
+    <div style="font-size:10px;font-weight:1000;letter-spacing:2px;color:#c7ff1a">KINGS LIVE ENGINE • INTERACTIVE MATCH</div>
+    <h1 id="liveTitle">Match Lab</h1>
+    <p class="muted" id="liveStatus">Preparati alla partita.</p>
+  </div>
+  <div class="board">
+    <div class="boardtop">LIVE BROADCAST · 40:00</div>
+    <div class="score">
+      <div><div class="club" id="liveHome">MY KINGS</div><small class="muted">HOME</small></div>
+      <strong><span id="liveHG">0</span> — <span id="liveAG">0</span></strong>
+      <div><div class="club" id="liveAway">OPPONENT</div><small class="muted">AWAY</small></div>
+    </div>
+  </div>
+  <div class="grid">
+    <div class="card">
+      <h3>🎙️ Telecronaca</h3>
+      <div id="liveFeed" style="min-height:220px"></div>
+    </div>
+    <div class="card">
+      <h3>🎮 Decisione</h3>
+      <p class="muted" id="decisionText">Scegli come giocare.</p>
+      <div class="actions" id="decisionButtons">
+        <button onclick="liveAction('attack')">🔥 Attacca</button>
+        <button onclick="liveAction('control')">🧠 Possesso</button>
+        <button onclick="liveAction('defend')">🛡️ Difendi</button>
+      </div>
+      <hr style="border:0;border-top:1px solid #303746;margin:14px 0">
+      <h3>🃏 Secret Card</h3>
+      <div class="actions">
+        <button class="alt" id="cardGoal" onclick="useCard('goal')" >⚡ Goal x2</button>
+        <button class="alt" id="cardJoker" onclick="useCard('joker')">🃏 Joker</button>
+        <button class="alt" id="cardTime" onclick="useCard('time')">⏱️ Tempo</button>
+      </div>
+    </div>
+  </div>
+  <div class="card" style="margin-top:11px">
+    <div class="row"><span>Momentum</span><b id="momentum">50</b></div>
+    <div style="height:10px;background:#202634;border-radius:99px;overflow:hidden"><div id="momentumBar" style="height:100%;width:50%;background:#c7ff1a;transition:.3s"></div></div>
+  </div>
+</section>
+</main>
 <script>
-const raw=[
-["Fran Hernández","Centrocampista",84,15,10,6],["Jero Martín","Centrocampista",70,7,11,4],["Vlad Marin","Difensore",79,12,14,6],["Andrea Benedetti","Centrocampista",77,10,14,7],["Andrea Tarasco","Difensore",79,12,14,1],["Radja Nainggolan","Centrocampista",82,16,1,0],["Riccardo Frosio","Centrocampista",83,14,3,0],["Daniel Santoro","Attaccante",82,14,11,15],["Lorenzo Berra","Attaccante",81,14,12,19],["Filippo Adamo","Difensore",73,8,11,1],["Gianluca Bressan","Portiere",77,10,12,0],["Matteo Manzoni","Difensore",79,12,13,3],["Giulio Uras","Centrocampista",82,13,12,8],["Nicolas Kalaja","Attaccante",81,12,11,10],["Alessandro Gelsi","Centrocampista",84,15,13,9],["Alessandro Sigurtà","Attaccante",83,15,12,11],["Simone Lo Faso","Attaccante",85,18,12,13],["Dennis Stojkovic","Attaccante",84,16,12,14],["Christian Ronchi","Attaccante",82,14,11,12],["Christian Calì","Attaccante",78,10,10,8],["Luca Mascherpa","Portiere",82,13,11,0],["Gianmarco Chironi","Portiere",82,13,12,0],["Vittorio Gilli","Portiere",81,13,10,0],["Alberto Muscas","Difensore",79,12,12,2],["Stefano Sberna","Difensore",79,12,12,1],["Alessandro Garilli","Difensore",82,14,13,3],["Soufiane El Jadi","Centrocampista",84,16,13,8],["Andrea Strada","Centrocampista",84,15,12,7],["Tiziano Merlonghi","Centrocampista",80,12,12,5],["Melvyn Remy","Difensore",78,11,11,2],["Andrea Filipi","Attaccante",80,12,10,8],["Bryan Mecca","Centrocampista",79,11,10,6],["Jorginho Fernandes","Attaccante",80,13,10,9],["Giovanni Kean","Attaccante",77,9,10,7],["Kevin Girgenti","Attaccante",78,10,10,6],["Stefan Kladar","Difensore",75,8,10,1],["Nico Federici","Centrocampista",75,9,9,4],["Andrea Bertazzoli","Attaccante",76,10,10,5],["Angelo Panarello","Difensore",77,10,10,2],["Giacomo Pennetta","Centrocampista",76,9,10,3],["Luca Meregalli","Difensore",74,8,10,1],["Diego del Monte","Centrocampista",72,7,8,4],["Matteo Confuorto","Centrocampista",71,7,8,3],["Giulio Picchi","Difensore",72,7,9,1],["Omar Florindo","Difensore",70,6,8,1]
+const CLUBS=["Alpak FC","BIGBRO","Boomers","Circus FC","D-POWER","FC Caesar","Gear 7 FC","Stallions","TRM FC","Underdogs FC","Zebras FC","Zeta Como"];
+const RAW=[
+["Alessandro Colombo","Attaccante",88,"Stallions",90,90,86,82,83,91],["Matteo Perrotti","Attaccante",87,"Underdogs FC",92,98,88,87,85,94],["Simone Lo Faso","Attaccante",86,"Boomers",90,94,86,85,82,92],["Alessandro Sigurtà","Attaccante",83,"Stallions",82,83,85,85,82,81],["Andrea Strada","Centrocampista",84,"Alpak FC",83,86,82,83,82,85],["Fran Hernández","Centrocampista",84,"Alpak FC",84,83,86,88,81,87],["Alessandro Gelsi","Centrocampista",84,"Alpak FC",84,84,82,87,84,86],["Daniel Santoro","Attaccante",84,"Underdogs FC",91,87,84,82,83,90],["Lorenzo Berra","Attaccante",85,"Stallions",94,88,82,80,84,89],["Dennis Stojkovic","Centrocampista",84,"Stallions",85,84,84,88,84,88],["Soufiane El Jadi","Centrocampista",83,"D-POWER",84,82,83,89,80,87],["Vlad Marin","Difensore",79,"Stallions",76,73,70,75,88,80],["Andrea Tarasco","Difensore",79,"Underdogs FC",74,70,69,78,89,79],["Alessandro Garilli","Difensore",82,"FC Caesar",82,81,82,85,87,82],["Tiziano Merlonghi","Centrocampista",80,"BIGBRO",78,76,78,82,86,80],["Andrea Benedetti","Centrocampista",77,"Underdogs FC",80,76,79,82,78,79],["Jero Martín","Centrocampista",70,"TRM FC",69,70,73,74,71,70],["Filippo Adamo","Difensore",73,"TRM FC",70,68,67,74,78,72],["Giulio Picchi","Difensore",72,"Zeta Como",69,69,72,74,74,70],["Omar Florindo","Difensore",70,"Zeta Como",68,68,68,74,73,70],["Nico Sardi","Centrocampista",72,"Boomers",70,68,70,76,77,68],["Gianmarco Chironi","Portiere",82,"Stallions",90,76,68,82,90,86],["Vittorio Gilli","Portiere",84,"Alpak FC",96,82,70,85,88,88],["Alessio Buono","Portiere",83,"Gear 7 FC",94,80,72,84,87,86],["Alessandro Vagge","Portiere",82,"Zebras FC",92,81,73,82,86,85],["Marco Fagnani","Attaccante",82,"Gear 7 FC",85,80,83,85,81,84],["Giovanni Kean","Attaccante",80,"Gear 7 FC",82,81,79,80,80,82],["Nicolas Kalaja","Attaccante",78,"TRM FC",78,76,78,78,80,79],["Christian Ronchi","Attaccante",80,"Zebras FC",83,82,80,78,81,83],["Andrea Bertazzoli","Attaccante",76,"Boomers",78,75,77,75,75,78],["Giacomo Pennetta","Centrocampista",76,"Zeta Como",73,72,76,78,78,77],["Federico Lorenzani","Centrocampista",76,"Alpak FC",74,73,78,80,75,78],["Nico Federici","Centrocampista",75,"Stallions",76,72,74,77,76,75],["Stefan Kladar","Difensore",75,"Underdogs FC",70,67,68,73,82,74],["Yasin Zougui","Difensore",74,"Gear 7 FC",71,68,70,72,80,73],["Luca Meregalli","Difensore",74,"TRM FC",69,67,69,73,81,72],["Antonio Mihaylov","Difensore",73,"Black Lotus FC",68,68,70,72,79,72],["Luigi Castelli","Portiere",69,"Punchers FC",78,68,62,75,75,70]
 ];
-const players=raw.map((x,i)=>({id:i,name:x[0],role:x[1],ovr:x[2],value:Math.max(4,Math.round((x[2]-60)/2)),apps:x[3],goals:x[4],assists:x[5],inj:0}));
-const clubs=["Tua Squadra","Alpak","Underdogs","Stallions","Caesar","Zeta Como","Circus","TRM","Zebras","BIGBRO","Boomers","Blur"];
-let S=JSON.parse(localStorage.getItem("kl2"))||null;
-function fresh(){return {team:"Tua Squadra",budget:100,roster:[],round:1,draftPick:0,marketLocked:false,history:[],lastEvents:[],stats:{},clubs:clubs.map((n,i)=>({name:n,pg:0,w:0,d:0,l:0,gf:0,gs:0,pts:0,roster:[]})),playoff:null}}
-function init(){
-  if(!S){S=fresh();save()}
-  document.querySelectorAll("[data-s]").forEach(b=>b.onclick=()=>go(b.dataset.s));
-  update();
-  renderDraft();
-  renderGame();
+const P=RAW.map((x,i)=>({id:i,name:x[0],role:x[1],ovr:x[2],club:x[3],pace:x[4],drib:x[5],shot:x[6],pass:x[7],def:x[8],skill:x[9],value:Math.max(5,Math.round((x[2]-55)/2)),form:78+Math.floor(Math.random()*15),goals:0,assists:0,matches:0}));
+let S=JSON.parse(localStorage.getItem("kings5")||"null");
+function fresh(){return{team:"My Kings",budget:100,module:"1-2-2-1",roster:[],round:1,news:"Benvenuto!",events:[],history:[],offers:[],drawn:"",clubs:CLUBS.map(n=>({name:n,pg:0,w:0,d:0,l:0,gf:0,gs:0,pts:0}))}}
+function save(){localStorage.setItem("kings5",JSON.stringify(S))}
+function init(){if(!S){S=fresh();save()}document.querySelectorAll("[data-page]").forEach(b=>b.onclick=()=>go(b.dataset.page));document.querySelectorAll("[data-m]").forEach(b=>b.onclick=()=>{S.module=b.dataset.m;save();selectMod()});document.getElementById("clubFilter").innerHTML+=[...new Set(P.map(p=>p.club))].sort().map(c=>`<option>${c}</option>`).join("");selectMod();renderAll()}
+function go(id){document.querySelectorAll(".screen").forEach(s=>s.classList.remove("on"));document.getElementById(id).classList.add("on");document.querySelectorAll("[data-page]").forEach(b=>b.classList.toggle("on",b.dataset.page===id))}
+function newCareer(){let n=prompt("Nome squadra","My Kings");if(n===null)return;S=fresh();S.team=n.trim()||"My Kings";save();go("setup");renderAll()}
+function saveSetup(){let n=document.getElementById("teamName").value.trim();if(n)S.team=n;save();go("draft");renderAll()}
+function selectMod(){document.querySelectorAll("[data-m]").forEach(b=>b.classList.toggle("sel",b.dataset.m===S.module))}
+function owned(){return new Set(S.roster)}function roster(){return S.roster.map(id=>P[id]).filter(Boolean)}
+function randomTeam(){S.drawn=CLUBS[Math.floor(Math.random()*CLUBS.length)];save();renderDraft()}
+function stat(p){let base=p.role==="Attaccante"?(p.shot*.28+p.drib*.22+p.pace*.16+p.pass*.12+p.skill*.12+p.def*.05+p.form*.05):(p.role==="Centrocampista"?(p.pass*.25+p.drib*.18+p.def*.16+p.shot*.12+p.pace*.1+p.skill*.12+p.form*.07):(p.role==="Difensore"?(p.def*.3+p.pass*.16+p.pace*.14+p.drib*.1+p.skill*.12+p.form*.08+p.shot*.1):(p.pace*.1+p.pass*.15+p.def*.2+p.skill*.1+p.form*.15+p.shot*.3));return Math.round(base)}
+function card(p){let o=stat(p);return `<div class="card"><div class="player"><div><b>${p.name}</b><br><span class="tag">${p.role} · ${p.club}</span></div><div class="ovr">${o}</div></div><div class="statgrid"><div class="stat">⚡<b>${p.pace}</b>Velocità</div><div class="stat">🪄<b>${p.drib}</b>1vs1</div><div class="stat">🎯<b>${p.shot}</b>Tiro</div><div class="stat">🧠<b>${p.pass}</b>Pass.</div><div class="stat">🛡️<b>${p.def}</b>Difesa</div><div class="stat">⭐<b>${p.skill}</b>Abilità</div></div><div class="row"><span>Forma</span><b>${p.form}</b></div><div class="row"><span>Valore</span><b class="gold">${p.value}M</b></div><button onclick="add(${p.id})" ${S.roster.length>=8||S.budget<p.value?"disabled":""}>Scegli · ${p.value}M</button></div>`}
+function renderDraft(){let q=(document.getElementById("search")?.value||"").toLowerCase(),r=document.getElementById("role")?.value||"",c=document.getElementById("clubFilter")?.value||"";let a=P.filter(p=>!owned().has(p.id)&&p.name.toLowerCase().includes(q)&&(!r||p.role===r)&&(!c||p.club===c)).sort((a,b)=>stat(b)-stat(a));document.getElementById("dinfo").textContent=`${S.roster.length}/8 giocatori · ${S.budget}M · modulo ${S.module}`;document.getElementById("random").innerHTML=S.drawn?`🎲 Squadra estratta: <b>${S.drawn}</b>`:"🎲 Premi “Squadra casuale” per pescare il club da cui partire.";document.getElementById("draftList").innerHTML=a.map(card).join("")}
+function add(id){let p=P[id];if(S.roster.length>=8)return alert("Rosa completa");if(S.budget<p.value)return alert("Budget insufficiente");S.roster.push(id);S.budget-=p.value;S.news=`${p.name} scelto nel Draft.`;save();renderAll();if(S.roster.length===8)go("squad")}
+function rows(){let r=roster(),g=r.filter(p=>p.role==="Portiere"),d=r.filter(p=>p.role==="Difensore"),m=r.filter(p=>p.role==="Centrocampista"),a=r.filter(p=>p.role==="Attaccante");if(S.module==="1-2-3")return[g,d.slice(0,2),a.slice(0,3)];if(S.module==="1-3-2")return[g,d.slice(0,3),a.slice(0,2)];return[g,d.slice(0,2),m.slice(0,2),a.slice(0,1)]}
+function shirt(p){return `<div class="shirt"><b>${p?stat(p):"?"}</b><small>${p?p.name.split(" ")[0]:"VUOTO"}</small></div>`}
+function renderSquad(){document.getElementById("sinfo").textContent=`${roster().length}/8 · OVR medio ${roster().length?Math.round(roster().reduce((a,p)=>a+stat(p),0)/roster().length):0} · ${S.module}`;document.getElementById("mods").innerHTML=["1-2-3","1-3-2","1-2-2-1"].map(m=>`<button class="${m===S.module?"":"alt"}" onclick="S.module='${m}';save();renderSquad()">${m}</button>`).join("");document.getElementById("pitch").innerHTML=rows().map(r=>`<div class="prow">${r.map(shirt).join("")}</div>`).join("");document.getElementById("squadList").innerHTML=roster().map(card).join("")}
+function power(){let x=rows().flat().filter(Boolean),v=x.length?x.reduce((a,p)=>a+stat(p),0)/x.length:60;return v+(S.module==="1-2-2-1"?2:S.module==="1-2-3"?1:0)+(Math.random()*4-2)}
+function opp(){return S.clubs.filter(c=>c.name!==S.team)[(S.round-1)%11].name}
+function goals(x){return Math.max(0,Math.round((x-65)/5+Math.random()*2.4))}
+function play(){if(S.round>11)return alert("Regular season conclusa");if(roster().length<7)return alert("Servono 7 titolari");let away=opp(),hg=goals(power()),ag=goals(73+Math.random()*12),me=S.clubs[0],op=S.clubs.find(c=>c.name===away);me.pg++;op.pg++;me.gf+=hg;me.gs+=ag;op.gf+=ag;op.gs+=hg;if(hg>ag){me.w++;me.pts+=3;op.l++}else if(hg<ag){me.l++;op.w++;op.pts+=3}else{me.d++;op.d++;me.pts++;op.pts++}let arr=["0' 🎙️ Benvenuti! Si parte!"];for(let i=0;i<hg;i++){let p=roster().filter(p=>p.role==="Attaccante")[0]||roster()[0];if(p){p.goals++;p.matches++;}arr.push(`${8+Math.floor(Math.random()*30)}' ⚽ ${S.team} GOOOOOL! ${p?p.name:"Azione devastante"} firma il gol!`)}for(let i=0;i<ag;i++)arr.push(`${10+Math.floor(Math.random()*28)}' ⚽ ${away} colpisce in contropiede!`);if(Math.random()<.5)arr.push(`18' 🃏 SECRET CARD! Il ritmo si accende.`);if(Math.random()<.3)arr.push(`25' 🟨 Duello durissimo: cartellino giallo.`);if(Math.random()<.35){let p=roster().find(p=>p.role==="Centrocampista");if(p){p.assists++;arr.push(`31' 🎯 Assist geniale di ${p.name}.`)}}arr.push(`40' 🏁 FINALE: ${S.team} ${hg}-${ag} ${away}.`);S.events=arr;S.history.push({r:S.round,away,hg,ag});S.round++;roster().forEach(p=>{p.matches++;p.form=Math.max(50,Math.min(99,p.form+(hg>=ag?2:-1)))});S.news=hg>ag?"🔥 Vittoria!":hg===ag?"⚔️ Pareggio!":"💥 Sconfitta.";save();renderAll()}
+function renderMatch(){document.getElementById("minfo").textContent=`Giornata ${Math.min(S.round,11)}/11 · ${S.module}`;document.getElementById("next").innerHTML=S.round<=11?`<div class="board"><div class="boardtop">KINGS MATCHDAY · 40 MIN</div><div class="score"><div class="club">${S.team}</div><strong>VS</strong><div class="club">${opp()}</div></div><div style="text-align:center;padding:10px"><button onclick="startLive()">▶ INIZIA MATCH LIVE</button></div></div>`:`<button onclick="go('playoff')">🏆 PLAYOFF</button>`;document.getElementById("live").innerHTML=S.events.map(e=>`<div class="event">${e}</div>`).join("")||"<span class='muted'>La telecronaca apparirà qui.</span>";document.getElementById("results").innerHTML=S.history.slice().reverse().map(x=>`<div class="event">MD${x.r} · ${S.team} <b>${x.hg}-${x.ag}</b> ${x.away}</div>`).join("")}
+function renderMarket(){document.getElementById("marketList").innerHTML=P.filter(p=>!owned().has(p.id)).sort((a,b)=>stat(b)-stat(a)).map(card).join("");document.getElementById("offers").innerHTML=S.offers.map((o,i)=>`<div class="card">🤝 ${o.club} offre <b class="gold">${o.amount}M</b> per ${o.player}<div class="actions"><button onclick="accept(${i})">Accetta</button><button class="alt" onclick="S.offers.splice(${i},1);save();renderMarket()">Rifiuta</button></div></div>`).join("")}
+function accept(i){let o=S.offers[i],id=S.roster.indexOf(o.id);if(id<0)return;S.roster.splice(id,1);S.budget+=o.amount;S.offers.splice(i,1);save();renderAll()}
+function sorted(){return [...S.clubs].sort((a,b)=>b.pts-a.pts||(b.gf-b.gs)-(a.gf-a.gs))}
+function renderTable(){document.getElementById("tbody").innerHTML=sorted().map((c,i)=>`<tr class="${c.name===S.team?"me":""}"><td>${i+1}</td><td><b>${c.name}</b></td><td>${c.pg}</td><td>${c.w}</td><td>${c.d}</td><td>${c.l}</td><td>${c.gf-c.gs}</td><td><b>${c.pts}</b></td></tr>`).join("")}
+function renderStats(){document.getElementById("statsList").innerHTML=roster().map(p=>`<div class="card"><div class="player"><b>${p.name}</b><span class="ovr">${stat(p)}</span></div><div class="row"><span>Gol</span><b>${p.goals}</b></div><div class="row"><span>Assist</span><b>${p.assists}</b></div><div class="row"><span>Presenze</span><b>${p.matches}</b></div><div class="row"><span>Forma</span><b>${p.form}</b></div></div>`).join("")}
+function renderPlayoff(){if(S.round<=11){document.getElementById("bracket").innerHTML="<div class='card'>Completa la regular season.</div>";return}if(S.champ){document.getElementById("bracket").innerHTML=`<div class="board"><div class="boardtop">FINALISSIMA</div><div class="score"><div>FINALISTA</div><strong>🏆</strong><div>${S.champ}</div></div></div>`;return}let t=sorted().slice(0,8);document.getElementById("bracket").innerHTML=`<div class="bracket"><div class="stage"><h3>QUARTI</h3>${[[0,7],[1,6],[2,5],[3,4]].map(x=>`<div class="slot">${t[x[0]].name}<br>vs<br>${t[x[1]].name}</div>`).join("")}</div><div class="stage"><h3>SEMIFINALI</h3><div class="slot">QF 1 vs QF 2</div><div class="slot">QF 3 vs QF 4</div></div><div class="stage"><h3>FINALE</h3><div class="slot">🏆 Finale</div></div></div><div class="actions"><button onclick="doPlayoff()">⚡ Simula Playoff</button></div>`}
+function doPlayoff(){let t=sorted().slice(0,8).map(x=>x.name),pick=a=>a[Math.floor(Math.random()*a.length)],a=pick([t[0],t[7]]),b=pick([t[1],t[6]]),c=pick([t[2],t[5]]),d=pick([t[3],t[4]]),s1=pick([a,b]),s2=pick([c,d]);S.champ=pick([s1,s2]);S.news=S.champ===S.team?"🏆 CAMPIONE D'ITALIA!":"Playoff conclusi.";save();renderAll()}
+function update(){document.getElementById("club").textContent=S.team;document.getElementById("budget").textContent=S.budget+"M";document.getElementById("mod").textContent=S.module;document.getElementById("round").textContent=Math.min(S.round,11)+"/11";document.getElementById("news").textContent=S.news}
+function renderAll(){update();renderDraft();renderSquad();renderMatch();renderMarket();renderTable();renderStats();renderPlayoff()}
+init();
+</script>
+<script id="v60js">
+let LM={on:false,t:0,h:0,a:0,m:50,used:{goal:false,joker:false,time:false},timer:null};
+function startLive(){
+  if(roster().length<7){alert("Servono almeno 7 giocatori per iniziare.");return}
+  LM={on:true,t:0,h:0,a:0,m:50,used:{goal:false,joker:false,time:false},timer:null};
+  document.getElementById("liveHome").textContent=S.team.toUpperCase();
+  document.getElementById("liveAway").textContent=opp().toUpperCase();
+  document.getElementById("liveFeed").innerHTML="";
+  addLive("0:00","🎙️ Benvenuti! La sfida sta per iniziare.","hot");
+  updateLive();
+  go("live");
+  LM.timer=setInterval(liveTick,700);
 }
-function save(){localStorage.setItem("kl2",JSON.stringify(S))}
-function go(id){document.querySelectorAll(".screen").forEach(x=>x.classList.remove("on"));document.getElementById(id).classList.add("on");document.querySelectorAll("[data-s]").forEach(x=>x.classList.toggle("active",x.dataset.s===id));({draft:renderDraft,squad:renderSquad,market:renderMarket,league:renderLeague,game:renderGame,playoffs:renderPost}[id]||update)()}
-function toast(t){let x=document.getElementById("toast");x.textContent=t;x.style.display="block";setTimeout(()=>x.style.display="none",1800)}
-function newCareer(){
-  if(!confirm("Cancellare la carriera attuale?"))return;
-  const name=prompt("Nome della tua squadra:","Tua Squadra");
-  if(name===null)return;
-  S=fresh();
-  S.team=name.trim()||"Tua Squadra";
-  S.clubs[0].name=S.team;
-  save(); update(); go("draft");
+function addLive(time,text,kind=""){
+  const box=document.getElementById("liveFeed");
+  box.innerHTML+=`<div class="liveevt ${kind}"><b>${time}</b> · ${text}</div>`;
+  box.scrollTop=box.scrollHeight;
 }
-function me(){return S.clubs.find(c=>c.name===S.team)}
-function roster(){return S.roster.map(id=>players.find(p=>p.id===id)).filter(Boolean)}
-function avg(){let r=roster();return r.length?Math.round(r.reduce((a,p)=>a+p.ovr,0)/r.length):0}
-function buy(id){if(S.roster.length>=8){toast("Rosa completa");return}let p=players.find(x=>x.id===id);if(S.budget<p.value){toast("Budget insufficiente");return}S.roster.push(id);S.budget-=p.value;me().roster.push(id);S.draftPick++;save();update();renderDraft();toast(p.name+" scelto!")}
-function sell(id){let i=S.roster.indexOf(id);if(i<0)return;let p=players.find(x=>x.id===id);S.roster.splice(i,1);me().roster=me().roster.filter(x=>x!==id);S.budget+=Math.floor(p.value*.7);save();update();renderSquad();toast("Cessione completata")}
-function playerCard(p,action="draft"){let owned=S.roster.includes(p.id);return `<div class="card"><div class="playerTop"><div><b>${p.name}</b><br><span class="tag">${p.role}</span></div><span class="ovr">${p.ovr}</span></div><div class="statrow"><span>Prezzo</span><b>${p.value}M</b></div><div class="statrow"><span>Profilo</span><span>${p.goals} gol • ${p.assists} assist</span></div><div class="actions">${action==="draft"?`<button onclick="buy(${p.id})" ${owned||S.roster.length>=8||S.budget<p.value?"disabled":""}>Scegli</button>`:action==="market"?`<button onclick="buy(${p.id})" ${S.budget<p.value||S.roster.length>=8?"disabled":""}>Compra ${p.value}M</button>`:`<button class="red" onclick="sell(${p.id})">Cedi +${Math.floor(p.value*.7)}M</button>`}</div></div>`}
-function renderDraft(){
- let dqEl=document.getElementById("dq"),drEl=document.getElementById("dr"),dsEl=document.getElementById("ds");
- let q=(dqEl?.value||"").toLowerCase(),r=drEl?.value||"",s=dsEl?.value||"ovr";let arr=players.filter(p=>!S.roster.includes(p.id)&&p.name.toLowerCase().includes(q)&&(!r||p.role===r));arr.sort((a,b)=>s==="ovr"?b.ovr-a.ovr:a.value-b.value);document.getElementById("draftInfo").textContent=`Pick ${S.draftPick+1}/8 • Budget ${S.budget}M • Overall medio ${avg()}`;
- document.getElementById("draftList").innerHTML=arr.map(p=>playerCard(p)).join("")}
-function renderSquad(){let r=roster();document.getElementById("sInfo").textContent=`${r.length}/8 giocatori • OVR medio ${avg()} • ${S.budget}M`;let a=r.filter(p=>p.role==="Attaccante"),c=r.filter(p=>p.role==="Centrocampista"),d=r.filter(p=>p.role==="Difensore"),g=r.filter(p=>p.role==="Portiere");document.getElementById("pitch").innerHTML=`<div class="line">${a.map(shirt).join("")}</div><div class="line">${c.map(shirt).join("")}</div><div class="line">${d.map(shirt).join("")}</div><div class="line">${g.map(shirt).join("")}</div>`;document.getElementById("sList").innerHTML=r.map(p=>playerCard(p,"sell")).join("")||'<div class="card muted">Nessun giocatore. Vai al Draft.</div>'}
-function shirt(p){return `<div class="shirt"><b>${p.ovr}</b><small>${p.name.split(" ")[0]}</small></div>`}
-function renderMarket(){
- let mqEl=document.getElementById("mq"),mrEl=document.getElementById("mr");
- let q=(mqEl?.value||"").toLowerCase(),r=mrEl?.value||"";let arr=players.filter(p=>!S.roster.includes(p.id)&&p.name.toLowerCase().includes(q)&&(!r||p.role===r)).sort((a,b)=>b.ovr-a.ovr);document.getElementById("marketList").innerHTML=arr.map(p=>playerCard(p,"market")).join("")}
-function sorted(){return [...S.clubs].sort((a,b)=>b.pts-a.pts||(b.gf-b.gs)-(a.gf-a.gs)||b.gf-a.gf)}
-function renderLeague(){document.getElementById("stand").innerHTML=sorted().map((c,i)=>`<tr class="${c.name===S.team?"me":""}"><td class="rank">${i+1}</td><td><b>${c.name}</b></td><td>${c.pg}</td><td>${c.w}</td><td>${c.d}</td><td>${c.l}</td><td>${c.gf}</td><td>${c.gs}</td><td>${c.gf-c.gs}</td><td><b>${c.pts}</b></td></tr>`).join("")}
-function makeScheduleRound(round){let others=S.clubs.map(c=>c.name).filter(n=>n!==S.team);return others[(round-1)%others.length]}
-function strength(){let r=roster();return avg()+(r.length<5?-15:0)+Math.min(5,S.budget/20)}
-function goalChance(x){return Math.max(0,Math.round((x-65)/5+Math.random()*3))}
-function simulateMatch(home,away,showLog=true){let hs=home===S.team?strength():68+Math.random()*17,as=away===S.team?strength():68+Math.random()*17;let hg=goalChance(hs),ag=goalChance(as);let events=[];let cards=["Gol x2","Star Player","Sospensione","Shootout"];let special=Math.random()<.55?cards[Math.floor(Math.random()*cards.length)]:null;events.push({t:"0'",txt:"Cage kick-off. Inizia la partita."});if(special)events.push({t:"5'",txt:"Secret Card disponibile: "+special});for(let i=0;i<hg;i++){let m=6+Math.floor(Math.random()*30),p=home===S.team?bestAttacker():randomName();events.push({t:m+"'",txt:"⚽ "+home+" — gol di "+p});}for(let i=0;i<ag;i++){let m=7+Math.floor(Math.random()*29);events.push({t:m+"'",txt:"⚽ "+away+" — gol di "+randomName()});}if(hg===ag)events.push({t:"36'",txt:"🏁 Parità: Matchball/Shootout decide la partita."});events.sort((a,b)=>parseInt(a.t)-parseInt(b.t));return {hg,ag,events}}
-function bestAttacker(){let r=roster().filter(p=>p.role==="Attaccante").sort((a,b)=>b.ovr-a.ovr);return (r[0]||roster().sort((a,b)=>b.ovr-a.ovr)[0]||{name:"giocatore"})?.name}
-function randomName(){return players[Math.floor(Math.random()*players.length)].name}
-function updateTable(home,away,hg,ag){let H=S.clubs.find(c=>c.name===home),A=S.clubs.find(c=>c.name===away);H.pg++;A.pg++;H.gf+=hg;H.gs+=ag;A.gf+=ag;A.gs+=hg;if(hg>ag){H.w++;H.pts+=3;A.l++}else if(ag>hg){A.w++;A.pts+=3;H.l++}else{H.d++;A.d++;H.pts++;A.pts++}}
-function play(){if(S.round>11){toast("Regular season finita");return}if(S.roster.length<5){toast("Servono almeno 5 giocatori");go("draft");return}let opp=makeScheduleRound(S.round);let res=simulateMatch(S.team,opp);updateTable(S.team,opp,res.hg,res.ag);S.history.push({round:S.round,home:S.team,away:opp,hg:res.hg,ag:res.ag,events:res.events});S.lastEvents=res.events;S.round++;if(S.round<=11)aiMarket();save();update();renderGame();toast("Partita terminata")}
-function aiMarket(){for(let c of S.clubs.filter(x=>x.name!==S.team)){if(Math.random()<.35){let free=players.filter(p=>!S.clubs.some(cl=>cl.roster.includes(p.id))&&p.ovr>=75);if(free.length){let p=free[Math.floor(Math.random()*free.length)];c.roster.push(p.id)}}}}
-function renderGame(){document.getElementById("gameInfo").textContent=`Giornata ${Math.min(S.round,11)}/11 • OVR ${avg()}`;if(S.round<=11){let opp=makeScheduleRound(S.round);document.getElementById("next").innerHTML=`<h3>Giornata ${S.round}</h3><div class="matchbox"><div><b>${S.team}</b></div><div class="score">VS</div><div><b>${opp}</b></div></div><div class="actions"><button style="width:100%" onclick="play()">▶ Simula partita</button></div>`}else document.getElementById("next").innerHTML=`<h3>Regular Season conclusa</h3><button onclick="go('playoffs')">Vai ai Playoff →</button>`;document.getElementById("history").innerHTML=S.history.slice().reverse().map(x=>`<div class="event"><b>MD${x.round}</b> · ${x.home} <b>${x.hg}-${x.ag}</b> ${x.away}</div>`).join("")||'<span class="muted">Nessuna partita.</span>'}
-function renderPost(){if(S.round<=11){post.innerHTML='<p>Completa le 11 giornate per sbloccare Play-In e Playoff.</p>';return}if(!S.playoff){let a=sorted(),p=a.slice(0,10);S.playoff={stage:"playin",teams:p.map(x=>x.name),champ:null,log:[]};save()}let P=S.playoff;post.innerHTML=`<h3>Struttura 2026</h3><p class="muted">1ª accede direttamente in semifinale; 2ª–6ª ai quarti; 7ª–10ª al Play-In.</p><div class="bracket"><div class="stage"><b>Play-In</b><div>7ª vs 10ª</div><div>8ª vs 9ª</div><div>Vincitori → finale Play-In</div></div><div class="stage"><b>Quarti</b><div>4ª vs 5ª</div><div>3ª vs 6ª</div><div>2ª vs Vincente Play-In</div></div><div class="stage"><b>Semifinale / Finale</b><div>1ª vs QF1</div><div>QF2 vs QF3</div><div>🏆 Finale</div></div></div><div class="actions"><button onclick="runPlayoffs()">⚡ Simula postseason</button></div><div style="margin-top:12px">${P.log.map(x=>`<div class="event">${x}</div>`).join("")}</div>`}
-function runPlayoffs(){let a=sorted().slice(0,10).map(x=>x.name),winner=(x,y)=>Math.random()<0.5?x:y;let p1=winner(a[6],a[9]),p2=winner(a[7],a[8]),pi=winner(p1,p2),q1=winner(a[3],a[4]),q2=winner(a[2],a[5]),q3=winner(a[1],pi),s1=winner(a[0],q1),s2=winner(q2,q3),champ=winner(s1,s2);S.playoff={stage:"done",champ,log:[`Play-In: ${p1} e ${p2} avanzano; ${pi} vince il Play-In.`,`Quarti: ${q1}, ${q2}, ${q3} avanzano.`,`Semifinali: ${s1} e ${s2} avanzano.`,`🏆 CAMPIONE: ${champ}`]};save();renderPost();toast(champ==="Tua Squadra"?"SEI CAMPIONE! 🏆":"Postseason completata")}
-function update(){document.getElementById("hTeam").textContent=S.team;
-document.getElementById("hBudget").textContent=S.budget+"M";
-document.getElementById("hSquad").textContent=S.roster.length+"/8";
-document.getElementById("hRound").textContent=Math.min(S.round,11)+"/11";
-document.getElementById("objectives").innerHTML=`<div class="statrow"><span>Overall rosa</span><b>${avg()}</b></div><div class="statrow"><span>Rosa completa</span><b>${S.roster.length>=8?"✓":"—"}</b></div><div class="statrow"><span>Obiettivo minimo</span><b>${sorted().findIndex(x=>x.name===S.team)+1<=6?"Zona playoff":"Top 6"}</b></div>`}
-init();renderDraft();
-</script></body></html>
+function liveTick(){
+  if(!LM.on)return;
+  LM.t+=1;
+  if(LM.t>=40){finishLive();return}
+  updateLive();
+  if(Math.random()<.22){
+    let p=roster()[Math.floor(Math.random()*roster().length)];
+    let ev=LM.m>58?["⚡ Grande azione!","🎯 Occasione nitida!","🔥 Il pubblico esplode!"][Math.floor(Math.random()*3)]:["🛡️ Recupero palla!","💨 Ripartenza!","⚔️ Duello sulla fascia!"][Math.floor(Math.random()*3)];
+    addLive(`${String(LM.t).padStart(2,"0")}:00`,`${ev} ${p?p.name:""}`);
+  }
+  if(Math.random()<.06){
+    const chance=Math.max(.04,Math.min(.24,(LM.m-30)/180));
+    if(Math.random()<chance){LM.h++;LM.m=Math.min(100,LM.m+12);let p=roster().filter(x=>x.role==="Attaccante")[0]||roster()[0];if(p)p.goals++;addLive(`${String(LM.t).padStart(2,"0")}:00`,`⚽ GOOOOOOL! ${S.team} passa in vantaggio! ${p?p.name:"Il tuo attaccante"} firma la rete!`,"hot");pulse()}
+    else if(Math.random()<.35){LM.a++;LM.m=Math.max(0,LM.m-12);addLive(`${String(LM.t).padStart(2,"0")}:00`,`⚽ Gol degli avversari! Il match si riapre.`,"bad");pulse()}
+  }
+}
+function updateLive(){
+  document.getElementById("liveHG").textContent=LM.h;
+  document.getElementById("liveAG").textContent=LM.a;
+  document.getElementById("momentum").textContent=Math.round(LM.m);
+  document.getElementById("momentumBar").style.width=Math.round(LM.m)+"%";
+  document.getElementById("liveStatus").textContent=`Minuto ${LM.t}' · ${LM.m>65?"Stai dominando":LM.m<35?"Sei sotto pressione":"Partita equilibrata"}`;
+}
+function pulse(){document.querySelector(".score").classList.add("pulse");setTimeout(()=>document.querySelector(".score").classList.remove("pulse"),600)}
+function liveAction(a){
+  if(!LM.on)return;
+  if(a==="attack"){LM.m=Math.min(100,LM.m+8);addLive(`${LM.t}:00`,"🔥 Ordine tattico: ATTACCA. Più rischi, più occasioni.","hot")}
+  if(a==="control"){LM.m=Math.min(100,LM.m+3);addLive(`${LM.t}:00`,"🧠 Ordine tattico: POSSESSO. La squadra congela il ritmo.")}
+  if(a==="defend"){LM.m=Math.max(0,LM.m-2);addLive(`${LM.t}:00`,"🛡️ Ordine tattico: DIFENDI. Tutti dietro la linea della palla.")}
+  updateLive();
+}
+function useCard(c){
+  if(!LM.on||LM.used[c])return;
+  LM.used[c]=true;
+  document.getElementById("card"+c.charAt(0).toUpperCase()+c.slice(1)).disabled=true;
+  if(c==="goal"){LM.m=Math.min(100,LM.m+18);addLive(`${LM.t}:00`,"🃏 SECRET CARD: GOAL x2! La tua prossima grande occasione vale doppio.","hot")}
+  if(c==="joker"){LM.m=Math.min(100,LM.m+25);addLive(`${LM.t}:00`,"🃏 SECRET CARD: JOKER! Un giocatore riceve un boost improvviso.","hot")}
+  if(c==="time"){LM.t=Math.min(39,LM.t+3);addLive(`${LM.t}:00`,"⏱️ SECRET CARD: TEMPO! Il cronometro corre più veloce.")}
+  updateLive();
+}
+function finishLive(){
+  clearInterval(LM.timer);LM.on=false;
+  let away=opp(),hg=LM.h,ag=LM.a,me=S.clubs[0],op=S.clubs.find(c=>c.name===away);
+  me.pg++;op.pg++;me.gf+=hg;me.gs+=ag;op.gf+=ag;op.gs+=hg;
+  if(hg>ag){me.w++;me.pts+=3;op.l++}else if(hg<ag){me.l++;op.w++;op.pts+=3}else{me.d++;op.d++;me.pts++;op.pts++}
+  S.history.push({r:S.round,away,hg,ag});S.round++;
+  roster().forEach(p=>{p.matches++;p.form=Math.max(50,Math.min(99,p.form+(hg>=ag?2:-1)))});
+  S.news=hg>ag?"🔥 Vittoria nel Live Match!":hg===ag?"⚔️ Pareggio nel Live Match!":"💥 Sconfitta nel Live Match!";
+  addLive("40:00",`🏁 FINALE: ${S.team} ${hg}-${ag} ${away}.`,"hot");
+  save();renderAll();
+  setTimeout(()=>go("match"),800);
+}
+window.startLive=startLive;window.liveAction=liveAction;window.useCard=useCard;
+</script>
+</body></html>
