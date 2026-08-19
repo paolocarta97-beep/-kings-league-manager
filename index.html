@@ -59,7 +59,7 @@ tr.me{background:linear-gradient(90deg,#243b13,#18220f);box-shadow:inset 3px 0 v
 <button data-page="home">Home</button><button data-page="setup">Club</button><button data-page="draft">Draft</button><button data-page="squad">Formazione</button><button data-page="match">Match</button><button data-page="live">⚡ Live</button><button data-page="market">Mercato</button><button data-page="table">Classifica</button><button data-page="stats">Stats</button><button data-page="playoff">Playoff</button>
 </nav></div></header>
 <main>
-<section id="home" class="screen on"><div class="hero"><div style="font-size:10px;font-weight:1000;letter-spacing:2px;color:#c7ff1a;margin-bottom:6px">LIVE • MANAGER MODE • 2026</div><h1>Il tuo club. Il tuo 7.</h1><p class="muted">Manageriale Kings con giocatori, statistiche, moduli, telecronaca e playoff.</p><div class="actions"><button onclick="newCareer()">Nuova carriera</button><button class="alt" onclick="go('setup')">Configura →</button></div></div><div class="grid"><div class="card"><span class="muted">CLUB</span><div id="club" class="big">—</div></div><div class="card"><span class="muted">BUDGET</span><div id="budget" class="big lime">100M</div></div><div class="card"><span class="muted">MODULO</span><div id="mod" class="big">—</div></div><div class="card"><span class="muted">GIORNATA</span><div id="round" class="big">1/11</div></div></div><div class="card" style="margin-top:11px"><b>🔥 Kings News</b><p id="news" class="muted"></p></div></section>
+<section id="home" class="screen on"><div class="hero"><div style="font-size:10px;font-weight:1000;letter-spacing:2px;color:#c7ff1a;margin-bottom:6px">LIVE • MANAGER MODE • 2026</div><h1>Il tuo club. Il tuo 7.</h1><p class="muted">Manageriale Kings con giocatori, statistiche, moduli, telecronaca e playoff.</p><div class="actions"><button onclick="newCareer()">Nuova carriera</button><button class="alt" onclick="go('setup')">Configura →</button><button class="alt" onclick="resetGame()">♻️ Reset</button></div></div><div class="grid"><div class="card"><span class="muted">CLUB</span><div id="club" class="big">—</div></div><div class="card"><span class="muted">BUDGET</span><div id="budget" class="big lime">100M</div></div><div class="card"><span class="muted">MODULO</span><div id="mod" class="big">—</div></div><div class="card"><span class="muted">GIORNATA</span><div id="round" class="big">1/11</div></div></div><div class="card" style="margin-top:11px"><b>🔥 Kings News</b><p id="news" class="muted"></p></div></section>
 
 <section id="setup" class="screen"><div class="hero"><h1>Crea la squadra</h1><p class="muted">Scegli il nome e il modulo prima del draft.</p><input id="teamName" placeholder="Nome squadra"><h3 style="margin-top:18px">Modulo titolare</h3><div class="module"><button data-m="1-2-3"><b>1-2-3</b><br>2 difensori · 3 attaccanti</button><button data-m="1-3-2"><b>1-3-2</b><br>3 difensori · 2 attaccanti</button><button data-m="1-2-2-1"><b>1-2-2-1</b><br>2 difensori · 2 centrocampisti · 1 attaccante</button></div><div class="actions"><button onclick="saveSetup()">Salva e vai al Draft</button></div></div></section>
 
@@ -122,11 +122,37 @@ const RAW=[
 ["Alessandro Colombo","Attaccante",88,"Stallions",90,90,86,82,83,91],["Matteo Perrotti","Attaccante",87,"Underdogs FC",92,98,88,87,85,94],["Simone Lo Faso","Attaccante",86,"Boomers",90,94,86,85,82,92],["Alessandro Sigurtà","Attaccante",83,"Stallions",82,83,85,85,82,81],["Andrea Strada","Centrocampista",84,"Alpak FC",83,86,82,83,82,85],["Fran Hernández","Centrocampista",84,"Alpak FC",84,83,86,88,81,87],["Alessandro Gelsi","Centrocampista",84,"Alpak FC",84,84,82,87,84,86],["Daniel Santoro","Attaccante",84,"Underdogs FC",91,87,84,82,83,90],["Lorenzo Berra","Attaccante",85,"Stallions",94,88,82,80,84,89],["Dennis Stojkovic","Centrocampista",84,"Stallions",85,84,84,88,84,88],["Soufiane El Jadi","Centrocampista",83,"D-POWER",84,82,83,89,80,87],["Vlad Marin","Difensore",79,"Stallions",76,73,70,75,88,80],["Andrea Tarasco","Difensore",79,"Underdogs FC",74,70,69,78,89,79],["Alessandro Garilli","Difensore",82,"FC Caesar",82,81,82,85,87,82],["Tiziano Merlonghi","Centrocampista",80,"BIGBRO",78,76,78,82,86,80],["Andrea Benedetti","Centrocampista",77,"Underdogs FC",80,76,79,82,78,79],["Jero Martín","Centrocampista",70,"TRM FC",69,70,73,74,71,70],["Filippo Adamo","Difensore",73,"TRM FC",70,68,67,74,78,72],["Giulio Picchi","Difensore",72,"Zeta Como",69,69,72,74,74,70],["Omar Florindo","Difensore",70,"Zeta Como",68,68,68,74,73,70],["Nico Sardi","Centrocampista",72,"Boomers",70,68,70,76,77,68],["Gianmarco Chironi","Portiere",82,"Stallions",90,76,68,82,90,86],["Vittorio Gilli","Portiere",84,"Alpak FC",96,82,70,85,88,88],["Alessio Buono","Portiere",83,"Gear 7 FC",94,80,72,84,87,86],["Alessandro Vagge","Portiere",82,"Zebras FC",92,81,73,82,86,85],["Marco Fagnani","Attaccante",82,"Gear 7 FC",85,80,83,85,81,84],["Giovanni Kean","Attaccante",80,"Gear 7 FC",82,81,79,80,80,82],["Nicolas Kalaja","Attaccante",78,"TRM FC",78,76,78,78,80,79],["Christian Ronchi","Attaccante",80,"Zebras FC",83,82,80,78,81,83],["Andrea Bertazzoli","Attaccante",76,"Boomers",78,75,77,75,75,78],["Giacomo Pennetta","Centrocampista",76,"Zeta Como",73,72,76,78,78,77],["Federico Lorenzani","Centrocampista",76,"Alpak FC",74,73,78,80,75,78],["Nico Federici","Centrocampista",75,"Stallions",76,72,74,77,76,75],["Stefan Kladar","Difensore",75,"Underdogs FC",70,67,68,73,82,74],["Yasin Zougui","Difensore",74,"Gear 7 FC",71,68,70,72,80,73],["Luca Meregalli","Difensore",74,"TRM FC",69,67,69,73,81,72],["Antonio Mihaylov","Difensore",73,"Black Lotus FC",68,68,70,72,79,72],["Luigi Castelli","Portiere",69,"Punchers FC",78,68,62,75,75,70]
 ];
 const P=RAW.map((x,i)=>({id:i,name:x[0],role:x[1],ovr:x[2],club:x[3],pace:x[4],drib:x[5],shot:x[6],pass:x[7],def:x[8],skill:x[9],value:Math.max(5,Math.round((x[2]-55)/2)),form:78+Math.floor(Math.random()*15),goals:0,assists:0,matches:0}));
-let S=JSON.parse(localStorage.getItem("kings5")||"null");
+let S=null;
+try{S=JSON.parse(localStorage.getItem("kings5")||"null");}catch(e){S=null;localStorage.removeItem("kings5");}
 function fresh(){return{team:"My Kings",budget:100,module:"1-2-2-1",roster:[],round:1,news:"Benvenuto!",events:[],history:[],offers:[],drawn:"",clubs:CLUBS.map(n=>({name:n,pg:0,w:0,d:0,l:0,gf:0,gs:0,pts:0}))}}
 function save(){localStorage.setItem("kings5",JSON.stringify(S))}
-function init(){if(!S){S=fresh();save()}document.querySelectorAll("[data-page]").forEach(b=>b.onclick=()=>go(b.dataset.page));document.querySelectorAll("[data-m]").forEach(b=>b.onclick=()=>{S.module=b.dataset.m;save();selectMod()});document.getElementById("clubFilter").innerHTML+=[...new Set(P.map(p=>p.club))].sort().map(c=>`<option>${c}</option>`).join("");selectMod();renderAll()}
+function init(){
+  try{
+    if(!S||typeof S!=="object")S=fresh();
+    if(!Array.isArray(S.roster))S.roster=[];
+    if(!Array.isArray(S.history))S.history=[];
+    if(!Array.isArray(S.clubs)||!S.clubs.length)S=fresh();
+    if(!S.module)S.module="1-2-2-1";
+    if(typeof S.budget!=="number")S.budget=100;
+    if(typeof S.round!=="number")S.round=1;
+    if(!S.team)S.team="My Kings";
+    save();
+    document.querySelectorAll("[data-page]").forEach(b=>b.onclick=()=>go(b.dataset.page));
+    document.querySelectorAll("[data-m]").forEach(b=>b.onclick=()=>{S.module=b.dataset.m;save();selectMod()});
+    const cf=document.getElementById("clubFilter");
+    if(cf)cf.innerHTML+=[...new Set(P.map(p=>p.club))].sort().map(c=>`<option>${c}</option>`).join("");
+    selectMod();renderAll();
+  }catch(e){
+    console.error(e);
+    S=fresh();save();renderAll();
+  }
+}
 function go(id){document.querySelectorAll(".screen").forEach(s=>s.classList.remove("on"));document.getElementById(id).classList.add("on");document.querySelectorAll("[data-page]").forEach(b=>b.classList.toggle("on",b.dataset.page===id))}
+function resetGame(){
+  if(confirm("Vuoi cancellare il salvataggio locale e ricominciare?")){
+    localStorage.removeItem("kings5");S=fresh();save();renderAll();go("home");
+  }
+}
 function newCareer(){let n=prompt("Nome squadra","My Kings");if(n===null)return;S=fresh();S.team=n.trim()||"My Kings";save();go("setup");renderAll()}
 function saveSetup(){let n=document.getElementById("teamName").value.trim();if(n)S.team=n;save();go("draft");renderAll()}
 function selectMod(){document.querySelectorAll("[data-m]").forEach(b=>b.classList.toggle("sel",b.dataset.m===S.module))}
