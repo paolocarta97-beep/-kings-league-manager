@@ -1,12 +1,23 @@
 <!doctype html>
 <html lang="it">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Kings League Italia Manager 6.1</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07080c">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Kings Italia Manager">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<title>Kings League Italia Manager 7.0</title>
 <style>
 :root{--bg:#07080c;--p:#11141d;--p2:#191e2a;--line:#303746;--txt:#f7f8fb;--muted:#9da6b8;--lime:#b9ff24;--violet:#795cff;--gold:#ffd34e;--red:#ff4966}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% -10%,#38256f 0,#090b11 38%),var(--bg);color:var(--txt);font-family:system-ui,-apple-system,Segoe UI,sans-serif}header{position:sticky;top:0;z-index:5;background:#080a0eee;backdrop-filter:blur(15px);border-bottom:1px solid var(--line);padding:10px}.top{max-width:1200px;margin:auto}.brand{font-weight:1000;font-size:18px}.brand i{color:var(--lime);font-style:normal}nav{display:flex;gap:5px;overflow:auto;margin-top:8px}button{border:0;border-radius:10px;padding:10px 13px;background:var(--lime);color:#0a1000;font-weight:900;cursor:pointer}nav button{background:transparent;color:var(--muted);border:1px solid transparent;white-space:nowrap}nav button.on{background:var(--p2);color:white;border-color:var(--line)}button.alt{background:var(--p2);color:white;border:1px solid var(--line)}button:disabled{opacity:.35}main{max-width:1200px;margin:auto;padding:14px}.screen{display:none}.screen.on{display:block}.hero,.card{background:var(--p);border:1px solid var(--line);border-radius:18px;padding:15px}.hero{background:linear-gradient(135deg,#171b29,#0d1017);margin-bottom:12px}h1{margin:0 0 6px;font-size:30px;letter-spacing:-1px}.muted{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:11px;margin-top:11px}.big{font-size:28px;font-weight:1000}.lime{color:var(--lime)}.gold{color:var(--gold)}.actions,.filters{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.filters input,.filters select,.hero input{background:var(--p);color:white;border:1px solid var(--line);border-radius:9px;padding:10px}.player{display:flex;justify-content:space-between;gap:10px}.ovr{font-size:30px;font-weight:1000;color:var(--lime)}.tag{font-size:11px;color:#dce1ec;background:#242a38;border-radius:99px;padding:4px 7px}.row{display:flex;justify-content:space-between;padding:5px 0;color:var(--muted);font-size:13px}.row b{color:white}.statgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:4px;margin:9px 0}.stat{background:#0c0f16;border:1px solid #252b38;border-radius:8px;padding:7px;font-size:11px}.stat b{display:block;color:white;font-size:16px}.board{background:#0d1017;border:1px solid #3a4151;border-radius:16px;overflow:hidden}.boardtop{padding:9px 12px;background:#202635;color:#dce2ed;font-size:10px;font-weight:1000;letter-spacing:1px}.score{display:grid;grid-template-columns:1fr auto 1fr;text-align:center;align-items:center;padding:18px;gap:8px}.score strong{font-size:38px}.club{font-weight:1000}.event{padding:9px;border-bottom:1px solid var(--line);font-size:13px}.pitch{min-height:510px;border:5px solid #edf4ec;border-radius:18px;background:repeating-linear-gradient(90deg,#15582f 0,#15582f 10%,#176332 10%,#176332 20%);padding:25px;display:flex;flex-direction:column;justify-content:space-around;position:relative}.pitch:before{content:"";position:absolute;inset:12%;border:2px solid #ffffff66}.prow{display:flex;justify-content:center;gap:18px;z-index:1}.shirt{text-align:center;width:72px}.shirt b{display:grid;place-items:center;width:44px;height:44px;margin:auto;background:white;color:#111;border-radius:50%}.shirt small{font-weight:900;font-size:10px;text-shadow:0 1px 3px #000}.module{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.module button{background:var(--p2);color:white;border:1px solid var(--line);text-align:left}.module button.sel{border-color:var(--lime)}table{width:100%;border-collapse:collapse;background:var(--p);border:1px solid var(--line)}th,td{padding:9px;border-bottom:1px solid var(--line);font-size:13px;text-align:left}th{color:var(--muted)}tr.me{background:#263719}.bracket{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stage{background:var(--p);border:1px solid var(--line);border-radius:14px;padding:12px}.slot{padding:10px;border-bottom:1px solid var(--line)}@media(max-width:650px){.module,.bracket{grid-template-columns:1fr}.pitch{min-height:430px}.score strong{font-size:30px}h1{font-size:26px}}
-</style>
+
+button,input,select{touch-action:manipulation}
+button{min-height:44px}
+body{padding-bottom:env(safe-area-inset-bottom)}
+
 
 <style id="kings51">
 :root{--neon:#c7ff1a;--hot:#ff2bd6;--cyan:#22e7ff;--ink:#06070b}
@@ -55,13 +66,25 @@ tr.me{background:linear-gradient(90deg,#243b13,#18220f);box-shadow:inset 3px 0 v
 </style>
 </head>
 <body>
-<header><div class="top"><div class="brand">KINGS <i>ITALIA</i> MANAGER <span style="font-size:11px;color:#7f899d">6.1</span></div><nav>
+<header><div class="top"><div class="brand">KINGS <i>ITALIA</i> MANAGER <span style="font-size:11px;color:#7f899d">7.0</span></div><nav>
 <button data-page="home">Home</button><button data-page="setup">Club</button><button data-page="draft">Draft</button><button data-page="squad">Formazione</button><button data-page="match">Match</button><button data-page="live">⚡ Live</button><button data-page="market">Mercato</button><button data-page="table">Classifica</button><button data-page="stats">Stats</button><button data-page="playoff">Playoff</button>
 </nav></div></header>
 <main>
-<section id="home" class="screen on"><div class="hero"><div style="font-size:10px;font-weight:1000;letter-spacing:2px;color:#c7ff1a;margin-bottom:6px">LIVE • MANAGER MODE • 2026</div><h1>Il tuo club. Il tuo 7.</h1><p class="muted">Manageriale Kings con giocatori, statistiche, moduli, telecronaca e playoff.</p><div class="actions"><button onclick="newCareer()">Nuova carriera</button><button class="alt" onclick="go('setup')">Configura →</button><button class="alt" onclick="resetGame()">♻️ Reset</button></div></div><div class="grid"><div class="card"><span class="muted">CLUB</span><div id="club" class="big">—</div></div><div class="card"><span class="muted">BUDGET</span><div id="budget" class="big lime">100M</div></div><div class="card"><span class="muted">MODULO</span><div id="mod" class="big">—</div></div><div class="card"><span class="muted">GIORNATA</span><div id="round" class="big">1/11</div></div></div><div class="card" style="margin-top:11px"><b>🔥 Kings News</b><p id="news" class="muted"></p></div></section>
+<section id="home" class="screen on">
+<div class="hero" style="margin-top:-2px;background:linear-gradient(135deg,#171b29,#10151c 55%,#21174b);border-color:#b9ff2466">
+  <div style="display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap">
+    <div><span class="tag" style="background:#b9ff24;color:#091000">VERSIONE 7.0</span>
+    <span class="tag">PWA • OFFLINE</span></div>
+    <button class="alt" onclick="showInstallHelp()">📱 Installa su iPhone</button>
+  </div>
+  <p class="muted" style="margin:10px 0 0">Nuova carriera, draft, formazione, Live Match, mercato, classifica e playoff in un'unica app.</p>
+</div><div class="hero"><div style="font-size:10px;font-weight:1000;letter-spacing:2px;color:#c7ff1a;margin-bottom:6px">LIVE • MANAGER MODE • 2026</div><h1>Il tuo club. Il tuo 7.</h1><p class="muted">Manageriale Kings con giocatori, statistiche, moduli, telecronaca e playoff.</p><div class="actions"><button onclick="newCareer()">Nuova carriera</button><button class="alt" onclick="go('setup')">Configura →</button><button class="alt" onclick="resetGame()">♻️ Reset</button></div></div><div class="grid"><div class="card"><span class="muted">CLUB</span><div id="club" class="big">—</div></div><div class="card"><span class="muted">BUDGET</span><div id="budget" class="big lime">100M</div></div><div class="card"><span class="muted">MODULO</span><div id="mod" class="big">—</div></div><div class="card"><span class="muted">GIORNATA</span><div id="round" class="big">1/11</div></div></div><div class="card" style="margin-top:11px"><b>🔥 Kings News</b><p id="news" class="muted"></p></div></section>
 
-<section id="setup" class="screen"><div class="hero"><h1>Crea la squadra</h1><p class="muted">Scegli il nome e il modulo prima del draft.</p><input id="teamName" placeholder="Nome squadra"><h3 style="margin-top:18px">Modulo titolare</h3><div class="module"><button data-m="1-2-3"><b>1-2-3</b><br>2 difensori · 3 attaccanti</button><button data-m="1-3-2"><b>1-3-2</b><br>3 difensori · 2 attaccanti</button><button data-m="1-2-2-1"><b>1-2-2-1</b><br>2 difensori · 2 centrocampisti · 1 attaccante</button></div><div class="actions"><button onclick="saveSetup()">Salva e vai al Draft</button></div></div></section>
+<section id="setup" class="screen"><div class="hero"><h1>Crea la squadra</h1><p class="muted">Scegli il nome e il modulo prima del draft.</p><input id="teamName" placeholder="Nome squadra"><div class="card" style="margin:12px 0"><b>⚽ Regola 7vs7</b><p class="muted" style="margin:6px 0 0">1 portiere + 6 giocatori di movimento. La rosa può arrivare a 12 giocatori; ne scegli 7 per il match.</p></div><h3 style="margin-top:18px">Modulo titolare</h3><div class="module">
+<button data-m="3-2-1"><b>3-2-1</b><br>3 difensori · 2 centrocampisti · 1 attaccante</button>
+<button data-m="2-2-2"><b>2-2-2</b><br>2 difensori · 2 centrocampisti · 2 attaccanti</button>
+<button data-m="2-3-1"><b>2-3-1</b><br>2 difensori · 3 centrocampisti · 1 attaccante</button>
+</div><div class="actions"><button onclick="saveSetup()">Salva e vai al Draft</button></div></div></section>
 
 <section id="draft" class="screen"><div class="hero"><h1>Draft</h1><p id="dinfo" class="muted"></p><div class="filters"><button onclick="randomTeam()">🎲 Squadra casuale</button><input id="search" placeholder="Cerca" oninput="renderDraft()"><select id="role" onchange="renderDraft()"><option value="">Tutti i ruoli</option><option>Portiere</option><option>Difensore</option><option>Centrocampista</option><option>Attaccante</option></select><select id="clubFilter" onchange="renderDraft()"><option value="">Tutte le squadre</option></select></div><div id="random" class="card" style="margin-top:10px"></div></div><div id="draftList" class="grid"></div></section>
 
@@ -115,7 +138,7 @@ tr.me{background:linear-gradient(90deg,#243b13,#18220f);box-shadow:inset 3px 0 v
     <div style="height:10px;background:#202634;border-radius:99px;overflow:hidden"><div id="momentumBar" style="height:100%;width:50%;background:#c7ff1a;transition:.3s"></div></div>
   </div>
 </section>
-</main>
+<div style="text-align:center;color:#657084;font-size:11px;padding:20px">Kings Italia Manager 7.0 • PWA</div></main>
 <script>
 const CLUBS=["Alpak FC","BIGBRO","Boomers","Circus FC","D-POWER","FC Caesar","Gear 7 FC","Stallions","TRM FC","Underdogs FC","Zebras FC","Zeta Como"];
 const RAW=[
@@ -123,16 +146,16 @@ const RAW=[
 ];
 const P=RAW.map((x,i)=>({id:i,name:x[0],role:x[1],ovr:x[2],club:x[3],pace:x[4],drib:x[5],shot:x[6],pass:x[7],def:x[8],skill:x[9],value:Math.max(5,Math.round((x[2]-55)/2)),form:78+Math.floor(Math.random()*15),goals:0,assists:0,matches:0}));
 let S=null;
-try{S=JSON.parse(localStorage.getItem("kings5")||"null");}catch(e){S=null;localStorage.removeItem("kings5");}
-function fresh(){return{team:"My Kings",budget:100,module:"1-2-2-1",roster:[],round:1,news:"Benvenuto!",events:[],history:[],offers:[],drawn:"",clubs:CLUBS.map(n=>({name:n,pg:0,w:0,d:0,l:0,gf:0,gs:0,pts:0}))}}
-function save(){localStorage.setItem("kings5",JSON.stringify(S))}
+try{S=JSON.parse(localStorage.getItem("kings7")||"null");}catch(e){S=null;localStorage.removeItem("kings7");}
+function fresh(){return{team:"My Kings",budget:100,module:"2-2-2",roster:[],round:1,news:"Benvenuto!",events:[],history:[],offers:[],drawn:"",clubs:CLUBS.map(n=>({name:n,pg:0,w:0,d:0,l:0,gf:0,gs:0,pts:0}))}}
+function save(){localStorage.setItem("kings7",JSON.stringify(S))}
 function init(){
   try{
     if(!S||typeof S!=="object")S=fresh();
     if(!Array.isArray(S.roster))S.roster=[];
     if(!Array.isArray(S.history))S.history=[];
     if(!Array.isArray(S.clubs)||!S.clubs.length)S=fresh();
-    if(!S.module)S.module="1-2-2-1";
+    if(!S.module)S.module="2-2-2";
     if(typeof S.budget!=="number")S.budget=100;
     if(typeof S.round!=="number")S.round=1;
     if(!S.team)S.team="My Kings";
@@ -150,7 +173,7 @@ function init(){
 function go(id){document.querySelectorAll(".screen").forEach(s=>s.classList.remove("on"));document.getElementById(id).classList.add("on");document.querySelectorAll("[data-page]").forEach(b=>b.classList.toggle("on",b.dataset.page===id))}
 function resetGame(){
   if(confirm("Vuoi cancellare il salvataggio locale e ricominciare?")){
-    localStorage.removeItem("kings5");S=fresh();save();renderAll();go("home");
+    localStorage.removeItem("kings7");S=fresh();save();renderAll();go("home");
   }
 }
 function newCareer(){let n=prompt("Nome squadra","My Kings");if(n===null)return;S=fresh();S.team=n.trim()||"My Kings";save();go("setup");renderAll()}
@@ -171,13 +194,18 @@ function stat(p){
   }
   return Math.round(base);
 }
-function card(p){let o=stat(p);return `<div class="card"><div class="player"><div><b>${p.name}</b><br><span class="tag">${p.role} · ${p.club}</span></div><div class="ovr">${o}</div></div><div class="statgrid"><div class="stat">⚡<b>${p.pace}</b>Velocità</div><div class="stat">🪄<b>${p.drib}</b>1vs1</div><div class="stat">🎯<b>${p.shot}</b>Tiro</div><div class="stat">🧠<b>${p.pass}</b>Pass.</div><div class="stat">🛡️<b>${p.def}</b>Difesa</div><div class="stat">⭐<b>${p.skill}</b>Abilità</div></div><div class="row"><span>Forma</span><b>${p.form}</b></div><div class="row"><span>Valore</span><b class="gold">${p.value}M</b></div><button onclick="add(${p.id})" ${S.roster.length>=8||S.budget<p.value?"disabled":""}>Scegli · ${p.value}M</button></div>`}
-function renderDraft(){let q=(document.getElementById("search")?.value||"").toLowerCase(),r=document.getElementById("role")?.value||"",c=document.getElementById("clubFilter")?.value||"";let a=P.filter(p=>!owned().has(p.id)&&p.name.toLowerCase().includes(q)&&(!r||p.role===r)&&(!c||p.club===c)).sort((a,b)=>stat(b)-stat(a));document.getElementById("dinfo").textContent=`${S.roster.length}/8 giocatori · ${S.budget}M · modulo ${S.module}`;document.getElementById("random").innerHTML=S.drawn?`🎲 Squadra estratta: <b>${S.drawn}</b>`:"🎲 Premi “Squadra casuale” per pescare il club da cui partire.";document.getElementById("draftList").innerHTML=a.map(card).join("")}
-function add(id){let p=P[id];if(S.roster.length>=8)return alert("Rosa completa");if(S.budget<p.value)return alert("Budget insufficiente");S.roster.push(id);S.budget-=p.value;S.news=`${p.name} scelto nel Draft.`;save();renderAll();if(S.roster.length===8)go("squad")}
-function rows(){let r=roster(),g=r.filter(p=>p.role==="Portiere"),d=r.filter(p=>p.role==="Difensore"),m=r.filter(p=>p.role==="Centrocampista"),a=r.filter(p=>p.role==="Attaccante");if(S.module==="1-2-3")return[g,d.slice(0,2),a.slice(0,3)];if(S.module==="1-3-2")return[g,d.slice(0,3),a.slice(0,2)];return[g,d.slice(0,2),m.slice(0,2),a.slice(0,1)]}
+function card(p){let o=stat(p);return `<div class="card"><div class="player"><div><b>${p.name}</b><br><span class="tag">${p.role} · ${p.club}</span></div><div class="ovr">${o}</div></div><div class="statgrid"><div class="stat">⚡<b>${p.pace}</b>Velocità</div><div class="stat">🪄<b>${p.drib}</b>1vs1</div><div class="stat">🎯<b>${p.shot}</b>Tiro</div><div class="stat">🧠<b>${p.pass}</b>Pass.</div><div class="stat">🛡️<b>${p.def}</b>Difesa</div><div class="stat">⭐<b>${p.skill}</b>Abilità</div></div><div class="row"><span>Forma</span><b>${p.form}</b></div><div class="row"><span>Valore</span><b class="gold">${p.value}M</b></div><button onclick="add(${p.id})" ${S.roster.length>=12||S.budget<p.value?"disabled":""}>Scegli · ${p.value}M</button></div>`}
+function renderDraft(){let q=(document.getElementById("search")?.value||"").toLowerCase(),r=document.getElementById("role")?.value||"",c=document.getElementById("clubFilter")?.value||"";let a=P.filter(p=>!owned().has(p.id)&&p.name.toLowerCase().includes(q)&&(!r||p.role===r)&&(!c||p.club===c)).sort((a,b)=>stat(b)-stat(a));document.getElementById("dinfo").textContent=`${S.roster.length}/12 giocatori · ${S.budget}M · modulo ${S.module}`;document.getElementById("random").innerHTML=S.drawn?`🎲 Squadra estratta: <b>${S.drawn}</b>`:"🎲 Premi “Squadra casuale” per pescare il club da cui partire.";document.getElementById("draftList").innerHTML=a.map(card).join("")}
+function add(id){let p=P[id];if(S.roster.length>=12)return alert("Rosa completa (12 giocatori)");if(S.budget<p.value)return alert("Budget insufficiente");S.roster.push(id);S.budget-=p.value;S.news=`${p.name} scelto nel Draft.`;save();renderAll();if(S.roster.length===12)go("squad")}
+function rows(){
+ let r=roster(),g=r.filter(p=>p.role==="Portiere"),d=r.filter(p=>p.role==="Difensore"),m=r.filter(p=>p.role==="Centrocampista"),a=r.filter(p=>p.role==="Attaccante");
+ if(S.module==="3-2-1")return[g,d.slice(0,3),m.slice(0,2),a.slice(0,1)];
+ if(S.module==="2-3-1")return[g,d.slice(0,2),m.slice(0,3),a.slice(0,1)];
+ return[g,d.slice(0,2),m.slice(0,2),a.slice(0,2)];
+}
 function shirt(p){return `<div class="shirt"><b>${p?stat(p):"?"}</b><small>${p?p.name.split(" ")[0]:"VUOTO"}</small></div>`}
-function renderSquad(){document.getElementById("sinfo").textContent=`${roster().length}/8 · OVR medio ${roster().length?Math.round(roster().reduce((a,p)=>a+stat(p),0)/roster().length):0} · ${S.module}`;document.getElementById("mods").innerHTML=["1-2-3","1-3-2","1-2-2-1"].map(m=>`<button class="${m===S.module?"":"alt"}" onclick="S.module='${m}';save();renderSquad()">${m}</button>`).join("");document.getElementById("pitch").innerHTML=rows().map(r=>`<div class="prow">${r.map(shirt).join("")}</div>`).join("");document.getElementById("squadList").innerHTML=roster().map(card).join("")}
-function power(){let x=rows().flat().filter(Boolean),v=x.length?x.reduce((a,p)=>a+stat(p),0)/x.length:60;return v+(S.module==="1-2-2-1"?2:S.module==="1-2-3"?1:0)+(Math.random()*4-2)}
+function renderSquad(){document.getElementById("sinfo").textContent=`${roster().length}/12 · 7 titolari · OVR medio ${roster().length?Math.round(roster().reduce((a,p)=>a+stat(p),0)/roster().length):0} · ${S.module}`;document.getElementById("mods").innerHTML=["3-2-1","2-2-2","2-3-1"].map(m=>`<button class="${m===S.module?"":"alt"}" onclick="S.module='${m}';save();renderSquad()">${m}</button>`).join("");document.getElementById("pitch").innerHTML=rows().map(r=>`<div class="prow">${r.map(shirt).join("")}</div>`).join("");document.getElementById("squadList").innerHTML=roster().map(card).join("")}
+function power(){let x=rows().flat().filter(Boolean),v=x.length?x.reduce((a,p)=>a+stat(p),0)/x.length:60;return v+(S.module==="2-3-1"?2:S.module==="3-2-1"?1:0)+(Math.random()*4-2)}
 function opp(){return S.clubs.filter(c=>c.name!==S.team)[(S.round-1)%11].name}
 function goals(x){return Math.max(0,Math.round((x-65)/5+Math.random()*2.4))}
 function play(){if(S.round>11)return alert("Regular season conclusa");if(roster().length<7)return alert("Servono 7 titolari");let away=opp(),hg=goals(power()),ag=goals(73+Math.random()*12),me=S.clubs[0],op=S.clubs.find(c=>c.name===away);me.pg++;op.pg++;me.gf+=hg;me.gs+=ag;op.gf+=ag;op.gs+=hg;if(hg>ag){me.w++;me.pts+=3;op.l++}else if(hg<ag){me.l++;op.w++;op.pts+=3}else{me.d++;op.d++;me.pts++;op.pts++}let arr=["0' 🎙️ Benvenuti! Si parte!"];for(let i=0;i<hg;i++){let p=roster().filter(p=>p.role==="Attaccante")[0]||roster()[0];if(p){p.goals++;p.matches++;}arr.push(`${8+Math.floor(Math.random()*30)}' ⚽ ${S.team} GOOOOOL! ${p?p.name:"Azione devastante"} firma il gol!`)}for(let i=0;i<ag;i++)arr.push(`${10+Math.floor(Math.random()*28)}' ⚽ ${away} colpisce in contropiede!`);if(Math.random()<.5)arr.push(`18' 🃏 SECRET CARD! Il ritmo si accende.`);if(Math.random()<.3)arr.push(`25' 🟨 Duello durissimo: cartellino giallo.`);if(Math.random()<.35){let p=roster().find(p=>p.role==="Centrocampista");if(p){p.assists++;arr.push(`31' 🎯 Assist geniale di ${p.name}.`)}}arr.push(`40' 🏁 FINALE: ${S.team} ${hg}-${ag} ${away}.`);S.events=arr;S.history.push({r:S.round,away,hg,ag});S.round++;roster().forEach(p=>{p.matches++;p.form=Math.max(50,Math.min(99,p.form+(hg>=ag?2:-1)))});S.news=hg>ag?"🔥 Vittoria!":hg===ag?"⚔️ Pareggio!":"💥 Sconfitta.";save();renderAll()}
@@ -265,4 +293,23 @@ function finishLive(){
 }
 window.startLive=startLive;window.liveAction=liveAction;window.useCard=useCard;
 </script>
+
+<div id="installModal" style="display:none;position:fixed;inset:0;background:#000b;z-index:50;padding:20px;align-items:center;justify-content:center">
+  <div class="card" style="max-width:520px;width:100%;box-shadow:0 20px 80px #000">
+    <h2 style="margin-top:0">📱 Installa Kings Italia Manager</h2>
+    <p class="muted">Su iPhone non serve l'App Store: puoi aggiungere questa PWA alla schermata Home.</p>
+    <ol class="muted" style="line-height:1.8">
+      <li>Apri il gioco con <b>Safari</b>.</li>
+      <li>Premi <b>Condividi</b> (il quadrato con la freccia).</li>
+      <li>Scorri e scegli <b>Aggiungi alla schermata Home</b>.</li>
+      <li>Premi <b>Aggiungi</b>.</li>
+    </ol>
+    <button onclick="document.getElementById('installModal').style.display='none'">Chiudi</button>
+  </div>
+</div>
+<script>
+function showInstallHelp(){document.getElementById('installModal').style.display='flex'}
+if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}))}
+</script>
+
 </body></html>
