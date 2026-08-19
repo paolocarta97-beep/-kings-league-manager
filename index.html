@@ -132,7 +132,19 @@ function saveSetup(){let n=document.getElementById("teamName").value.trim();if(n
 function selectMod(){document.querySelectorAll("[data-m]").forEach(b=>b.classList.toggle("sel",b.dataset.m===S.module))}
 function owned(){return new Set(S.roster)}function roster(){return S.roster.map(id=>P[id]).filter(Boolean)}
 function randomTeam(){S.drawn=CLUBS[Math.floor(Math.random()*CLUBS.length)];save();renderDraft()}
-function stat(p){let base=p.role==="Attaccante"?(p.shot*.28+p.drib*.22+p.pace*.16+p.pass*.12+p.skill*.12+p.def*.05+p.form*.05):(p.role==="Centrocampista"?(p.pass*.25+p.drib*.18+p.def*.16+p.shot*.12+p.pace*.1+p.skill*.12+p.form*.07):(p.role==="Difensore"?(p.def*.3+p.pass*.16+p.pace*.14+p.drib*.1+p.skill*.12+p.form*.08+p.shot*.1):(p.pace*.1+p.pass*.15+p.def*.2+p.skill*.1+p.form*.15+p.shot*.3));return Math.round(base)}
+function stat(p){
+  let base;
+  if(p.role==="Attaccante"){
+    base=p.shot*.28+p.drib*.22+p.pace*.16+p.pass*.12+p.skill*.12+p.def*.05+p.form*.05;
+  }else if(p.role==="Centrocampista"){
+    base=p.pass*.25+p.drib*.18+p.def*.16+p.shot*.12+p.pace*.10+p.skill*.12+p.form*.07;
+  }else if(p.role==="Difensore"){
+    base=p.def*.30+p.pass*.16+p.pace*.14+p.drib*.10+p.skill*.12+p.form*.08+p.shot*.10;
+  }else{
+    base=p.pace*.10+p.pass*.15+p.def*.20+p.skill*.10+p.form*.15+p.shot*.30;
+  }
+  return Math.round(base);
+}
 function card(p){let o=stat(p);return `<div class="card"><div class="player"><div><b>${p.name}</b><br><span class="tag">${p.role} · ${p.club}</span></div><div class="ovr">${o}</div></div><div class="statgrid"><div class="stat">⚡<b>${p.pace}</b>Velocità</div><div class="stat">🪄<b>${p.drib}</b>1vs1</div><div class="stat">🎯<b>${p.shot}</b>Tiro</div><div class="stat">🧠<b>${p.pass}</b>Pass.</div><div class="stat">🛡️<b>${p.def}</b>Difesa</div><div class="stat">⭐<b>${p.skill}</b>Abilità</div></div><div class="row"><span>Forma</span><b>${p.form}</b></div><div class="row"><span>Valore</span><b class="gold">${p.value}M</b></div><button onclick="add(${p.id})" ${S.roster.length>=8||S.budget<p.value?"disabled":""}>Scegli · ${p.value}M</button></div>`}
 function renderDraft(){let q=(document.getElementById("search")?.value||"").toLowerCase(),r=document.getElementById("role")?.value||"",c=document.getElementById("clubFilter")?.value||"";let a=P.filter(p=>!owned().has(p.id)&&p.name.toLowerCase().includes(q)&&(!r||p.role===r)&&(!c||p.club===c)).sort((a,b)=>stat(b)-stat(a));document.getElementById("dinfo").textContent=`${S.roster.length}/8 giocatori · ${S.budget}M · modulo ${S.module}`;document.getElementById("random").innerHTML=S.drawn?`🎲 Squadra estratta: <b>${S.drawn}</b>`:"🎲 Premi “Squadra casuale” per pescare il club da cui partire.";document.getElementById("draftList").innerHTML=a.map(card).join("")}
 function add(id){let p=P[id];if(S.roster.length>=8)return alert("Rosa completa");if(S.budget<p.value)return alert("Budget insufficiente");S.roster.push(id);S.budget-=p.value;S.news=`${p.name} scelto nel Draft.`;save();renderAll();if(S.roster.length===8)go("squad")}
