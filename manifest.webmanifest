@@ -1,0 +1,9 @@
+{
+  "name": "Kings Italia Manager 7.2",
+  "short_name": "Kings Manager",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#07080c",
+  "theme_color": "#c7ff1a",
+  "icons": []
+}
